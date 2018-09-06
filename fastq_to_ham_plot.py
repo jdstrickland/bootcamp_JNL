@@ -11,14 +11,13 @@ def getSeqs(fastq_file):
     counter = 0
     f = open(fastq_file)
     for line in f:
-    	if line[0] in ["A","T", "C", "G"]: lines.append(line.rstrip())
+    	if line[0] in ["A","T", "C", "G", "R"]: lines.append(line.rstrip())
     return lines
 
 def hamDist(str1, str2):
    #Count the # of differences between equal length strings str1 and str2
    diffs = 0
    return diffs
-
 
 #Make some kind of plot that contains the data you've calculated.
 fastq= "CTGATC.fastq"
