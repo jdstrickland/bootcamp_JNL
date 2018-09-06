@@ -6,12 +6,14 @@
 import matplotlib.pyplot as plt
 import itertools
 
-f = open(CTGATC.fastq)
-
 def getSeqs(fastq_file):
     #Parse a FASTQ for sequence identities and corresponding sequences
-    seqences = {}
-    return sequences
+    lines = []
+    f = open(fastq_file)
+    for line in f:
+    	if line[0] in ["A","T", "C", "G", "N"]: lines.append(line.rstrip())
+    f.close()
+    return lines
 
 def hamDist(str1, str2):
    #Count the # of differences between equal length strings str1 and str2
@@ -28,8 +30,8 @@ def hamDist(str1, str2):
 
 
 #Make some kind of plot that contains the data you've calculated.
+fastq= "CTGATC.fastq"
 seq_list = getSeqs(f)
-f.close()
 hamming_distances = [hamDist(seq1, seq2) for seq1, seq2 in itertools.combinations(seq_list, 2)]
 plt.scatter(range(1, len(hamming_distances) + 1), hamming_distances)
 plt.xlabel('Sequence pair')
