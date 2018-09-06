@@ -11,7 +11,7 @@ def getSeqs(fastq_file):
     counter = 0
     f = open(fastq_file)
     for line in f:
-    	if line[0] in ["A","T", "C", "G", "R"]: lines.append(line.rstrip())
+    	if line[0] in ["A","T", "C", "G", "N"]: lines.append(line.rstrip())
     return lines
 
 def hamDist(str1, str2):
