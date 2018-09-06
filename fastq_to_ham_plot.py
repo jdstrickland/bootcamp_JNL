@@ -5,18 +5,20 @@
 
 import matplotlib.pyplot as plt
 
-f = open(CTGATC.fastq)
+f = open('CTGATC.fastq')
 
 def getSeqs(fastq_file):
     #Parse a FASTQ for sequence identities and corresponding sequences
     seqences = {}
-    return sequences
+    return seqences
 
 def hamDist(str1, str2):
    #Count the # of differences between equal length strings str1 and str2
    diffs = 0
    for i in xrange(len(str1)):
-       if str1[i] != str2[i]:
+       if str1[i] == 'N' or str2[i] == 'N':
+           diffs += 1
+       elif str1[i] != str2[i]:
            diffs += 1
        else:
            continue
@@ -24,4 +26,4 @@ def hamDist(str1, str2):
 
 #Make some kind of plot that contains the data you've calculated.
 
-plt.show()
+getSeqs(f)
