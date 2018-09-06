@@ -4,13 +4,16 @@
 # Script must ultimately be contained in one fluid .py file merged via GitHub
 
 import matplotlib.pyplot as plt
-
-f = open('CTGATC.fastq')
+import itertools
 
 def getSeqs(fastq_file):
     #Parse a FASTQ for sequence identities and corresponding sequences
-    seqences = {}
-    return seqences
+    lines = []
+    f = open(fastq_file)
+    for line in f:
+    	if line[0] in ["A","T", "C", "G", "N"]: lines.append(line.rstrip())
+    f.close()
+    return lines
 
 def hamDist(str1, str2):
    #Count the # of differences between equal length strings str1 and str2
@@ -25,5 +28,10 @@ def hamDist(str1, str2):
    return diffs
 
 #Make some kind of plot that contains the data you've calculated.
-
-getSeqs(f)
+fastq= "CTGATC.fastq"
+seq_list = getSeqs(f)
+hamming_distances = [hamDist(seq1, seq2) for seq1, seq2 in itertools.combinations(seq_list, 2)]
+plt.scatter(range(1, len(hamming_distances) + 1), hamming_distances)
+plt.xlabel('Sequence pair')
+plt.ylabel('Hamming Distance')
+plt.savefig('hamming_plot.png')
